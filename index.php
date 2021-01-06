@@ -9,21 +9,38 @@
 </head>
 <body>
 
-<form>
+<form name="form" method="GET">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Brazilian Amount</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input name="brazilian_amount" type="text" class="form-control"  aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Euro</label>
-    <input type="text" class="form-control" id="exampleInputPassword1">
+    <label for="exampleInputPassword1" class="form-label">Euro exchange rate</label>
+    <input name="euros" type="text" class="form-control" ">
   </div>
   
-  <button type="submit" class="btn btn-primary">Convert</button>
+  <button name="convertbtn" type="submit" class="btn btn-primary">Convert</button>
 </form>
-<div class="result">
-    <h3> Euros </h3>
-</div>
+
+
+<?php
+if (isset($_GET['convertbtn']))
+{
+    if (empty($_GET['brazilian_amount'] and $_GET['euros'])) {
+        echo "<h3> You have not entered the amount or the exchange rate";
+
+      }
+
+    elseif(isset($_GET['brazilian_amount'], $_GET['euros'])){
+    $brazilian_amount = $_GET['brazilian_amount'];
+    $euros = $_GET['euros'];
+
+		$dd_output =$brazilian_amount * $euros;
+        echo "<h3> $dd_output";
+        
+    }
+}
+?>
     
 </body>
 </html>
